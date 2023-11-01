@@ -6,6 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <ul id="myContainer"></ul>
+    <script>
+        function generateList(array) {
+    let ul = document.createElement('ul');
+    for (let item of array) {
+      let li = document.createElement('li');
+      if (Array.isArray(item)) {
+        let newList = generateList(item);
+        li.appendChild(newList);
+      } else {
+        li.textContent = item;
+      }
+      ul.appendChild(li);
+    }
+    return ul;
+  }
+  let myArray = [1, 2,[1.1, 1.2, 1.3], 3];
+  let container = document.getElementById('myContainer'); 
+  container.appendChild(generateList(myArray));
+    </script>
 </body>
 </html>
